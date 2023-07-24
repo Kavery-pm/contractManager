@@ -1,7 +1,12 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css'
 import SideNavigation from './layouts/sideBar';
-
+import {
+  Routes,
+  Route,
+   BrowserRouter,
+ } from "react-router-dom";
+import ContractTable from './components/contractTable';
 function App() {
   const theme = createTheme({
     palette: {
@@ -19,10 +24,22 @@ function App() {
   });
 
   return (
+    <>
     <ThemeProvider theme={theme}>
-   <SideNavigation />
-    </ThemeProvider> 
-    
+    <div className="app-container">
+     <BrowserRouter>
+     <SideNavigation/>
+     <div>
+      <Routes>
+      <Route path="/" element={<ContractTable/>} />
+      <Route path="/contract" element={<ContractTable/>}/> 
+     
+      </Routes>
+      </div>
+    </BrowserRouter>
+    </div>
+    </ThemeProvider>
+    </>
   )
 }
 
