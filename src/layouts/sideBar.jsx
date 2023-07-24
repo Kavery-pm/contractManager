@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import {  FaColumns, FaPlus } from "react-icons/fa";
 import { Sidebar, Menu } from "react-pro-sidebar";
+import { Link } from "react-router-dom";
 
 
 import styled from "styled-components";
@@ -92,9 +93,9 @@ console.log(props);
         <CustomMenu iconShape="square">
           <ul>
             <StyledMenuItem style={styles.listItem}>
-            
+            <Link to='/contracts'>
                 <FaColumns /> Contracts
-          
+        </Link>
             </StyledMenuItem>
             <StyledMenuItem style={styles.listItem}>
              
