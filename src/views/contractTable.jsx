@@ -6,7 +6,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
+import showContracts from '../assets/showPdf.png';
 
 const tableIcons = {
      Search: SearchIcon,
@@ -233,11 +233,11 @@ const ContractTable = ()=>{
                 <div>
                   <span
                     style={{ cursor: "pointer" }}
-                    title="show contract details"
+                    title="click to view contract details"
                     
                   >
-                  
-                   X
+                 <img src={showContracts}/>
+               
                   </span>
                 </div>
               );
