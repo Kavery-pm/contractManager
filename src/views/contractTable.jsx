@@ -7,6 +7,8 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import showContracts from '../assets/showPdf.png';
+import { useState } from 'react';
+import ContractDetails from '../components/contractDetails';
 
 const tableIcons = {
      Search: SearchIcon,
@@ -18,6 +20,8 @@ const tableIcons = {
     LastPage: LastPageIcon,
   };
 const ContractTable = ()=>{
+    const [viewContractDetails, setviewContractDetails] = useState(false);
+    const [contractDetails, setcontractDetails] = useState('');
     const data = [
         {
             "id": 1,
@@ -236,7 +240,7 @@ const ContractTable = ()=>{
                     title="click to view contract details"
                     
                   >
-                 <img src={showContracts}/>
+                 <img src={showContracts} onClick={()=>setviewContractDetails(true)}/>
                
                   </span>
                 </div>
@@ -248,9 +252,10 @@ const ContractTable = ()=>{
       ];
     return (
       <>
-      <h1>Contract Table</h1>
-      <MaterialTable
-
+     {viewContractDetails && <ContractDetails contractData={contractDetails}/>}
+     
+    {!viewContractDetails && <> <h1>Contract Table</h1> <MaterialTable
+ onRowClick={(evt, selectedRow) => setcontractDetails(selectedRow)}
    title=""
    columns={columns}
    data={data}
@@ -263,7 +268,8 @@ const ContractTable = ()=>{
        backgroundColor: "#1976d2", 
      },
    }}
- />
+ /></>
+}
       </>
     )
 }
