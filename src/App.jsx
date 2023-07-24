@@ -1,15 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './App.css'
+import SideNavigation from './layouts/sideBar';
 
 function App() {
- 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main:   '#20caa4'  , 
+      },
+      secondary: {
+        main:  '#157f8a'  , 
+      },
+    },
+    typography: {
+      fontFamily: "Roboto, sans-serif", 
+    },
+    spacing: 4, 
+  });
 
   return (
-    <>
-      <h1>Contract manager</h1>
-    </>
+    <ThemeProvider theme={theme}>
+   <SideNavigation />
+    </ThemeProvider> 
+    
   )
 }
 
