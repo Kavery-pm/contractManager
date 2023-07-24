@@ -250,9 +250,12 @@ const ContractTable = ()=>{
         { title: "status", field: "status" },
     
       ];
+      const closeContractHandler = ()=>{
+        setviewContractDetails(false)
+      }
     return (
       <>
-     {viewContractDetails && <ContractDetails contractData={contractDetails}/>}
+     {viewContractDetails && <ContractDetails contractData={contractDetails}closeContractHandler={closeContractHandler}/>}
      
     {!viewContractDetails && <> <h1>Contract Table</h1> <MaterialTable
  onRowClick={(evt, selectedRow) => setcontractDetails(selectedRow)}
