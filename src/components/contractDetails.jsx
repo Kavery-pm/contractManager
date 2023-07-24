@@ -7,6 +7,9 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ContractTemplate from './contractTemplate';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { fetchContractDetails } from '../services/getContracts';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -17,13 +20,30 @@ const Item = styled(Paper)(({ theme }) => ({
   lineHeight: '60px',
 }));
 
-const lightTheme = createTheme({ palette: { mode: 'light' } });
+
 
 const ContractDetails = ({ contractData,closeContractHandler }) =>{
+ const [contractDetails, setcontractDetails] = useState({});
+useEffect(() => {
+ const getContractDetail = async()=>{
+    try{
+        console.log(typeof contractData.id)
+         const contractInfo = await fetchContractDetails(contractData.id);
+        
+         setcontractDetails(contractInfo);
+    }
+catch(error){
+    console.error('Error fetching contracts',error.message)
+}
+
+ }
+ getContractDetail();
+}, [])
+
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
-        <ThemeProvider theme={lightTheme}>
+    
           <Box
             sx={{
               p: 2,
@@ -43,6 +63,11 @@ const ContractDetails = ({ contractData,closeContractHandler }) =>{
                 <Box>
                   <Typography style={{ margin: '10px' }}>
                     Email: {contractData.email}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography style={{ margin: '10px' }}>
+                   Category:{contractDetails.category}
                   </Typography>
                 </Box>
               </div>
@@ -67,7 +92,7 @@ const ContractDetails = ({ contractData,closeContractHandler }) =>{
               </div>
             </Item>
           </Box>
-        </ThemeProvider>
+       
       </Grid>
       <Grid item xs={12}>
         <Box
