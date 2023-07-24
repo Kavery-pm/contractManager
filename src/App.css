@@ -5,11 +5,12 @@
 .app-container{
   display: flex;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: rgba(248, 236, 248, 0.8);
 }
 .content{
     flex: 1;
     padding: 20px;
     margin-top: 40px;
-    background-color: #f0f0f0;
+    background-color: rgba(248, 236, 248, 0.8);
+    /* background-color: #f0f0f0; */
 }
