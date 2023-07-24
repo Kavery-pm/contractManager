@@ -13,3 +13,6 @@ body {
  .css-dip3t8{
 background: linear-gradient(#27212e, #221530);
 }
+ .MuiIcon-root.MuiIcon-fontSizeSmall {
+  display:none
+} 

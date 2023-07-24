@@ -6,7 +6,7 @@ import {
   Route,
    BrowserRouter,
  } from "react-router-dom";
-import ContractTable from './components/contractTable';
+import ContractTable from './layouts/contractTable';
 function App() {
   const theme = createTheme({
     palette: {
