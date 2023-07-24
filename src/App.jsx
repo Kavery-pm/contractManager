@@ -29,7 +29,7 @@ function App() {
     <div className="app-container">
      <BrowserRouter>
      <SideNavigation/>
-     <div>
+     <div className='content'>
       <Routes>
       <Route path="/" element={<ContractTable/>} />
       <Route path="/contract" element={<ContractTable/>}/> 
