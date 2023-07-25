@@ -40,7 +40,7 @@ const StyledMenuItem = styled.li`
   }
   a {
     text-decoration: none;
-    color: inherit; /* Optionally, you can inherit the color from the parent */
+    color: inherit; 
   }
 `;
 
@@ -71,10 +71,10 @@ console.log(props);
       marginTop: "20px",
       marginBottom: "20px", 
     },
-    button: {
+    button : {
       marginTop: "20px", 
     },
-    
+   
    
   };
 
@@ -95,13 +95,16 @@ console.log(props);
             <StyledMenuItem style={styles.listItem}>
             <Link to='/contracts'>
                 <FaColumns /> Contracts
-        </Link>
+                </Link>
             </StyledMenuItem>
+         
             <StyledMenuItem style={styles.listItem}>
-             
-                <FaPlus /> Add new contract
            
+             <Link to="/newContract">
+                <FaPlus /> Add new contract
+           </Link>
             </StyledMenuItem>
+           
           </ul>
         </CustomMenu>
        

@@ -7,6 +7,7 @@ import {
    BrowserRouter,
  } from "react-router-dom";
 import ContractTable from './views/contractTable';
+import NewContract from './views/newContract';
 function App() {
   const theme = createTheme({
     palette: {
@@ -33,7 +34,7 @@ function App() {
       <Routes>
       <Route path="/" element={<ContractTable/>} />
       <Route path="/contracts" element={<ContractTable/>}/> 
-     
+     <Route path="/newContract" element={<NewContract/>}/>
       </Routes>
       </div>
     </BrowserRouter>
