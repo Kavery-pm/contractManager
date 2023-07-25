@@ -1,4 +1,5 @@
-import { useState,useEffect } from "react";
+
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import { getCategories } from "../services/getCategories";
 
 const NewContract = () => {
-    const [categories, setcategories] = useState([])
+  const [categories, setCategories] = useState([]);
   const [contractData, setContractData] = useState({
     firstName: "",
     lastName: "",
@@ -20,21 +21,22 @@ const NewContract = () => {
     startDate: "",
     cancelationDate: "",
   });
-useEffect(() => {
+
+  useEffect(() => {
     const fetchCategoriesData = async () => {
-        try {
-          const categoriesData = await getCategories();
-          setcategories(categoriesData);
-        } catch (error) {
-          console.error("Error fetching categories:", error.message);
-        }
-      };
-  
-      fetchCategoriesData();
-}, [])
+      try {
+        const categoriesData = await getCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error("Error fetching categories:", error.message);
+      }
+    };
+
+    fetchCategoriesData();
+  }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+   const { name, value } = e.target;
     setContractData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -52,41 +54,16 @@ useEffect(() => {
     console.log("New Contract Data:", contractData);
   };
 
+ 
+  const selectedCategory = categories.find(
+    (category) => category.id === parseInt(contractData.category)
+  );
+
   return (
     <form onSubmit={handleSubmit}>
       <Paper elevation={3} style={{ padding: 16 }}>
         <Grid container spacing={6}>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="First Name"
-              name="firstName"
-              value={contractData.firstName}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="Last Name"
-              name="lastName"
-              value={contractData.lastName}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="Email"
-              type="email"
-              name="email"
-              value={contractData.email}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </Grid>
+         
           <Grid item xs={12} md={6}>
             <FormControl variant="outlined" fullWidth>
               <InputLabel>Category</InputLabel>
@@ -104,70 +81,24 @@ useEffect(() => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel>Status</InputLabel>
-              <Select
-                name="status"
-                value={contractData.status}
-                onChange={handleChange}
-                label="Status"
-              >
-                <MenuItem value="Draft">Draft</MenuItem>
-                <MenuItem value="Active">Active</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-         
+     
 
-          <Grid item xs={12} md={6}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel htmlFor="start-date">Start Date</InputLabel>
-              <TextField
-                id="start-date"
-                type="date"
-                name="startDate"
-                value={contractData.startDate}
-                onChange={handleChange}
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  style: {
-                    paddingTop: "12px",
-                    marginTop:'34px' 
-                  
-                  },
-                }}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel htmlFor="cancellation-date">Cancellation Date</InputLabel>
-              <TextField
-                id="cancellation-date"
-                type="date"
-                name="cancelationDate"
-                value={contractData.cancelationDate}
-                onChange={handleChange}
-                variant="outlined"
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{
-                  style: {
-                    paddingTop: "12px",
-                    marginTop:'34px' 
-                  },
-                }}
-              />
-            </FormControl>
-          </Grid>
+          
+          {selectedCategory?.visibleFields?.map((field) => (
+              <Grid item xs={12} md={6} key={field}>
+                <FormControl variant="outlined" fullWidth>
+                  <TextField
+                    label={field.charAt(0).toUpperCase() + field.slice(1)}
+                    name={field}
+                    value={contractData[field]}
+                    onChange={handleChange}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </FormControl>
+              </Grid>
+            ))}
+           
 
           <Grid item xs={12}>
             <Button type="submit" variant="contained" color="primary" fullWidth>
