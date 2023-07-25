@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { fetchContractDetails } from '../services/getContracts';
+import { getCategories } from '../services/getCategories';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -29,8 +30,10 @@ useEffect(() => {
     try{
         console.log(typeof contractData.id)
          const contractInfo = await fetchContractDetails(contractData.id);
-        
-         setcontractDetails(contractInfo);
+        const categoryDetails = await getCategories();
+        const categoryName = categoryDetails.find(category=>category.id===contractInfo.category);
+        console.log({...contractInfo,categoryName})
+         setcontractDetails({...contractInfo,categoryName});
     }
 catch(error){
     console.error('Error fetching contracts',error.message)
@@ -62,12 +65,12 @@ catch(error){
                 </Box>
                 <Box>
                   <Typography style={{ margin: '10px' }}>
-                    Email: {contractData.email}
+                    Email: {!contractData.email?'Not available':contractData.email}
                   </Typography>
                 </Box>
                 <Box>
                   <Typography style={{ margin: '10px' }}>
-                   Category:{contractDetails.category}
+                  Category: {contractDetails?.categoryName?.name || 'Not available'}
                   </Typography>
                 </Box>
               </div>
