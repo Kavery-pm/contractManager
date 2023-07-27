@@ -71,7 +71,7 @@ const NewContract = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if startDate, cancelationDate, and email are provided
+    // Checks if startDate, cancelationDate, and email are provided
     const { startDate, cancelationDate, email, ...restData } = contractData;
 
     const requestData = {

@@ -44,9 +44,8 @@ const StyledMenuItem = styled.li`
   }
 `;
 
-const SideNavigation = (props) => {
+const SideNavigation = () => {
   const [collapsed, setCollapsed] = useState(false);
-console.log(props);
   const styles = {
     sideBarHeight: {
       height: "150vh",
