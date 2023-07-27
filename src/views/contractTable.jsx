@@ -61,7 +61,27 @@ const ContractTable = () => {
         }
       },
     },
-    { title: "status", field: "status" },
+    { title: "status", field: "status",
+    render: ({status}) => {
+      if (status !== undefined) {
+        return (
+          <div>
+            <span
+              style={{ cursor: "pointer" }}
+              title="click to view contract details"
+            >
+             {status}
+            </span>
+          </div>
+        );
+      }else return (
+        <div>
+          <span>
+            Not available
+          </span>
+        </div>
+      )
+    },  },
   ];
   const closeContractHandler = () => {
     setviewContractDetails(false);
