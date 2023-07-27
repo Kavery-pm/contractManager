@@ -3,12 +3,11 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ContractTemplate from './contractTemplate';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { fetchContractDetails } from '../services/getContracts';
 import { getCategories } from '../services/getCategories';
 
@@ -28,7 +27,7 @@ const ContractDetails = ({ contractData,closeContractHandler }) =>{
 useEffect(() => {
  const getContractDetail = async()=>{
     try{
-        console.log(typeof contractData.id)
+       
          const contractInfo = await fetchContractDetails(contractData.id);
         const categoryDetails = await getCategories();
         const categoryName = categoryDetails.find(category=>category.id===contractInfo.category);

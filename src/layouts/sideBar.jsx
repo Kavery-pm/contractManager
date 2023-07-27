@@ -49,7 +49,7 @@ const SideNavigation = (props) => {
 console.log(props);
   const styles = {
     sideBarHeight: {
-      height: "145vh",
+      height: "150vh",
       color: "white",
     },
     menuIcon: {

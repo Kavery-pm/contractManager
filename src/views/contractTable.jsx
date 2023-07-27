@@ -42,8 +42,8 @@ const ContractTable = () => {
     {
       title: "ContractDetails",
       field: "id",
-      render: (rowData) => {
-        if (rowData.id !== undefined) {
+      render: ({id}) => {
+        if (id !== undefined) {
           return (
             <div>
               <span
@@ -51,6 +51,7 @@ const ContractTable = () => {
                 title="click to view contract details"
               >
                 <img
+                alt="click to view contract details"
                   src={showContracts}
                   onClick={() => setviewContractDetails(true)}
                 />

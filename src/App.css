@@ -4,7 +4,7 @@
 
 .app-container{
   display: flex;
-  height: 100vh;
+  height: 150vh;
   background-color: rgba(248, 236, 248, 0.8);
 }
 .content{
@@ -12,5 +12,5 @@
     padding: 20px;
     margin-top: 40px;
     background-color: rgba(248, 236, 248, 0.8);
-    /* background-color: #f0f0f0; */
+  
 }
